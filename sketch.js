@@ -5,9 +5,41 @@ function setup() {
     background(0)     //Black
 }
 
-function drawLine(){
-    m = 0.5
-    b = 0
+function linearRegression(){
+
+    /*
+    Linear Regression formula
+    https://wikimedia.org/api/rest_v1/media/math/render/svg/9caed0f59417a425c988764032e5892130e97fa4
+    */
+    let x_sum = 0
+    let y_sum = 0
+    
+    let m = 0
+    let b = 0
+
+    for (let i = 0; i < data.length; i++){
+        x_sum += data[i].x
+        y_sum += data[i].y
+    }
+
+    let x_mean = x_sum / data.length
+    let y_mean = y_sum / data.length
+
+    let num = 0
+    let den = 0
+
+    for (let i = 0; i < data.length; i++){
+        num += (data[i].x - x_mean) * (data[i].y - y_mean)
+        den += (data[i].x - x_mean) * (data[i].x - x_mean)            
+    }
+    m =  num / den
+    b = y_mean - (m * x_mean)
+
+    return [m, b]
+
+}
+
+function drawLine(m, b){
     var x1 = 0;    
     var y1 = m * x1 + b;
     var x2 = 1;
@@ -23,6 +55,8 @@ function drawLine(){
 }
 
 function mousePressed(){
+
+    let x = map(mouseX, 0, height, 0, 1)
     let y = map(mouseY, 0, height, 1, 0)
     let point = createVector(x, y)
     data.push(point)
@@ -39,5 +73,10 @@ function draw(){
 
        ellipse(x, y, 8, 8)
     }
-   drawLine()
+    if (data.length > 1){
+        
+    let [m, b] = linearRegression()
+    console.log(m, b)
+   drawLine(m, b)
+}
 }
