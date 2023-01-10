@@ -32,11 +32,11 @@ function linearRegression(){
         num += (data[i].x - x_mean) * (data[i].y - y_mean)
         den += (data[i].x - x_mean) * (data[i].x - x_mean)            
     }
+    
     m =  num / den
     b = y_mean - (m * x_mean)
 
     return [m, b]
-
 }
 
 function drawLine(m, b){
@@ -70,13 +70,11 @@ function draw(){
     for (let i = 0; i < data.length; i++){
         var x = map(data[i].x, 0, 1, 0, width)
         var y = map(data[i].y, 0, 1, height, 0)
-
-       ellipse(x, y, 8, 8)
+        ellipse(x, y, 8, 8)
     }
-    if (data.length > 1){
-        
+    
+    if (data.length > 1){       
     let [m, b] = linearRegression()
-    console.log(m, b)
-   drawLine(m, b)
-}
+    drawLine(m, b)
+    }
 }
