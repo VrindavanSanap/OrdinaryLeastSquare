@@ -6,7 +6,6 @@ function setup() {
 }
 
 function linearRegression(){
-
     /*
     Linear Regression formula
     https://wikimedia.org/api/rest_v1/media/math/render/svg/9caed0f59417a425c988764032e5892130e97fa4
@@ -40,10 +39,10 @@ function linearRegression(){
 }
 
 function drawLine(m, b){
-    var x1 = 0;    
-    var y1 = m * x1 + b;
-    var x2 = 1;
-    var y2 = m * x2 + b;
+    let x1 = 0;    
+    let y1 = m * x1 + b;
+    let x2 = 1;
+    let y2 = m * x2 + b;
 
     // rescale variables
     x1 = map(x1, 0, 1, 0, width)
@@ -56,23 +55,27 @@ function drawLine(m, b){
 
 function mousePressed(){
 
+    // add point to data
     let x = map(mouseX, 0, height, 0, 1)
     let y = map(mouseY, 0, height, 1, 0)
     let point = createVector(x, y)
     data.push(point)
-}
 
-function draw(){
-    background(0)
-    fill(255)
+    background(0) //clear previous canvas
+    fill(255)     // white color for elements
     stroke(255)
      
+    // draw points
     for (let i = 0; i < data.length; i++){
-        var x = map(data[i].x, 0, 1, 0, width)
-        var y = map(data[i].y, 0, 1, height, 0)
-        ellipse(x, y, 8, 8)
+        let xi = map(data[i].x, 0, 1, 0, width)
+        let yi = map(data[i].y, 0, 1, height, 0)
+        ellipse(xi, yi, 8, 8)
     }
-    
+}
+
+
+
+function draw(){ 
     if (data.length > 1){       
     let [m, b] = linearRegression()
     drawLine(m, b)
