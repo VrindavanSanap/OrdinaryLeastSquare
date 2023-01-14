@@ -79,5 +79,8 @@ function draw(){
     if (data.length > 1){       
     let [m, b] = linearRegression()
     drawLine(m, b)
+        
+    document.getElementById("m").innerText = "m = " + m.toFixed(2) 
+    document.getElementById("b").innerText = "b = " + b .toFixed(2)
     }
 }
