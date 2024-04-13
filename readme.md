@@ -1,7 +1,7 @@
 # Simple Linear Regression 
 
-### [Live demo!!](https://vrindavansanap.github.io/OrdinaryLeastSquare/)✨
-https://vrindavansanap.github.io/OrdinaryLeastSquare/
+### [Live demo!!](https://vrindavansanap.github.io/ordinary-least-square/)✨
+https://vrindavansanap.github.io/ordinary-least-square/
 
 
 
